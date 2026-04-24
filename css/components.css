@@ -967,3 +967,234 @@
     padding: 1.5rem;
   }
 }
+
+
+/* =========================================
+   ABOUT
+   ========================================= */
+
+.about {
+  background-color: var(--color-bg-soft);
+}
+
+/* --- Two-column grid --- */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* --- Left: text column --- */
+.about__text h2 {
+  margin-top: 0.75rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.about__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.about__copy p {
+  font-size: 0.975rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  line-height: 1.85;
+  margin: 0;
+}
+
+/* --- Stats --- */
+.about__stats {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 2.5rem;
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  padding-right: 2.5rem;
+}
+
+.about__stat + .about__stat {
+  padding-right: 0;
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--color-border);
+}
+
+.about__stat-number {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--color-gold);
+  line-height: 1;
+  display: block;
+}
+
+.about__stat-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  display: block;
+}
+
+/* --- Right: visual column --- */
+.about__visual {
+  display: flex;
+  align-items: stretch;
+}
+
+/* =========================================
+   CREDENTIAL CARD
+   ========================================= */
+
+.credential-card {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-surface);
+  /* Outer gold border */
+  border: 1px solid var(--color-gold);
+  overflow: hidden;
+}
+
+/* Inner inset frame via pseudo-element */
+.credential-card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(201, 169, 110, 0.28);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Corner accent marks */
+.credential-card::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid var(--color-gold);
+  border-right: 1px solid var(--color-gold);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Watermark decorative text --- */
+.credential-card__watermark {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.9rem;
+  color: var(--color-gold);
+  opacity: 0.065;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+/* --- Card body --- */
+.credential-card__body {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem;
+}
+
+.credential-card__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  margin: 0 0 0.75rem;
+}
+
+.credential-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* --- Credentials list --- */
+.credential-card__list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.credential-card__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.4;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.credential-card__list li:last-child {
+  border-bottom: none;
+}
+
+.credential-card__dot {
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+}
+
+/* --- About responsive --- */
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .about__visual {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 560px) {
+  .about__stat-number {
+    font-size: 2.75rem;
+  }
+
+  .credential-card__body {
+    padding: 1.75rem;
+  }
+
+  .credential-card__watermark {
+    font-size: 1.4rem;
+  }
+}
