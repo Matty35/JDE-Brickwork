@@ -2445,3 +2445,176 @@
     padding-top: 100px;
   }
 }
+
+
+/* =========================================
+   STICKY CALL BUTTON (mobile only)
+   ========================================= */
+
+.sticky-call {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 980;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-brick);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(139, 58, 42, 0.4);
+  opacity: 0;
+  transform: scale(0.75);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.25s ease;
+}
+
+.sticky-call.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.sticky-call:hover {
+  background-color: var(--color-brick-light);
+  color: var(--color-white);
+}
+
+/* Desktop: hidden entirely */
+@media (min-width: 769px) {
+  .sticky-call {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   COOKIE NOTICE BAR
+   ========================================= */
+
+.cookie-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 997;
+  background-color: var(--color-bg-soft);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.85rem 2rem;
+  flex-wrap: wrap;
+}
+
+.cookie-bar[hidden] {
+  display: none;
+}
+
+.cookie-bar p {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cookie-bar__accept {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: none;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 7px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.cookie-bar__accept:hover {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+}
+
+@media (max-width: 480px) {
+  .cookie-bar {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+}
+
+
+/* =========================================
+   404 PAGE
+   ========================================= */
+
+.hero--404 {
+  min-height: 100vh;
+  align-items: center;
+}
+
+.hero--404 .hero__inner--center {
+  gap: 0;
+}
+
+/* Suppress animations — no JS-driven fade needed */
+.hero--404 .hero__heading,
+.hero--404 .hero__sub {
+  opacity: 1;
+  animation: none;
+  transform: none;
+}
+
+.error-code {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 20vw, 12rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-gold);
+  opacity: 0.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero--404 .hero__heading--sm {
+  margin-bottom: 1rem;
+}
+
+.hero--404 .hero__sub {
+  margin-bottom: 2.5rem;
+}
+
+/* Responsive layout review notes:
+   375px (iPhone SE):
+   - Hero h1 uses 12vw on mobile = ~45px. "Brickwork &" fits in ~311px content width. ✓
+   - Trust bar 2-col wraps, cells ~187px wide. ✓
+   - Service cards 1 col. ✓
+   - Testimonial cards 80vw = ~300px, track 311px — slight next-card peek. ✓
+   - FAQ collapses to 1 col. ✓
+   - Contact form rows collapse to 1 col. ✓
+
+   768px (iPad portrait):
+   - Nav at ≤900px breakpoint → hamburger shown, desktop links hidden. ✓
+   - Services 2 col (1024px breakpoint not triggered). ✓
+   - FAQ/About/Testimonials all at 1 col by their respective breakpoints. ✓
+
+   1280px (desktop):
+   - Services 4 col (~285px per card). ✓
+   - FAQ 280px + 1fr with sticky heading. ✓
+   - About/Areas 2-col grids. ✓
+
+   Known items for client review when photos added:
+   - Gallery column heights may need adjustment with real images.
+   - Testimonial card heights will equalise with real text lengths.
+*/

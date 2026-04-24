@@ -158,4 +158,33 @@
     startTimer();
   }
 
+  // ── Sticky call button (mobile, fades in after 300px scroll) ──────────────
+  var stickyCall = document.getElementById('sticky-call');
+  if (stickyCall) {
+    function updateStickyCall() {
+      if (window.scrollY > 300) {
+        stickyCall.classList.add('is-visible');
+      } else {
+        stickyCall.classList.remove('is-visible');
+      }
+    }
+    window.addEventListener('scroll', updateStickyCall, { passive: true });
+    updateStickyCall();
+  }
+
+  // ── Cookie notice ─────────────────────────────────────────────────────────
+  var cookieBar    = document.getElementById('cookie-bar');
+  var cookieAccept = document.getElementById('cookie-accept');
+  if (cookieBar) {
+    if (!localStorage.getItem('jde_cookies_accepted')) {
+      cookieBar.removeAttribute('hidden');
+    }
+    if (cookieAccept) {
+      cookieAccept.addEventListener('click', function () {
+        localStorage.setItem('jde_cookies_accepted', '1');
+        cookieBar.setAttribute('hidden', '');
+      });
+    }
+  }
+
 })();

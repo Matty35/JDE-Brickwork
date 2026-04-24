@@ -1,0 +1,41 @@
+[build]
+  publish = "."
+
+# ── Rewrites ──────────────────────────────────────────────────────────────────
+
+# Clean URL: /contact → /contact.html
+[[redirects]]
+  from   = "/contact"
+  to     = "/contact.html"
+  status = 200
+
+# ── Cache headers ─────────────────────────────────────────────────────────────
+
+# CSS: cache for 1 year
+# Note: update filenames or add query strings when files change in production
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# JS: cache for 1 year
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Images: cache for 1 year
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# ── Security headers (all pages) ──────────────────────────────────────────────
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options            = "DENY"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "geolocation=(), microphone=(), camera=()"
