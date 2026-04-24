@@ -98,4 +98,64 @@
     });
   });
 
+  // ── Testimonials Carousel ──────────────────────────────────────────────────
+  var track   = document.getElementById('testimonials-track');
+  var prevBtn = document.getElementById('testimonials-prev');
+  var nextBtn = document.getElementById('testimonials-next');
+
+  if (track) {
+    var cards   = Array.prototype.slice.call(track.querySelectorAll('.testimonial-card'));
+    var current = 0;
+    var timer   = null;
+    var paused  = false;
+
+    function cardStep() {
+      if (!cards.length) return 0;
+      var style = window.getComputedStyle(track);
+      var gap   = parseFloat(style.columnGap || style.gap) || 24;
+      return cards[0].offsetWidth + gap;
+    }
+
+    function goTo(index) {
+      var len = cards.length;
+      current = ((index % len) + len) % len;
+      track.scrollTo({ left: current * cardStep(), behavior: 'smooth' });
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        if (!paused) goTo(current + 1);
+      }, 5000);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        goTo(current - 1);
+        startTimer();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        goTo(current + 1);
+        startTimer();
+      });
+    }
+
+    // Pause auto-scroll on hover / focus (keyboard navigation)
+    track.addEventListener('mouseenter', function () { paused = true;  });
+    track.addEventListener('mouseleave', function () { paused = false; });
+    track.addEventListener('focusin',    function () { paused = true;  });
+    track.addEventListener('focusout',   function () { paused = false; });
+
+    // Keep currentIndex in sync when user swipes manually
+    track.addEventListener('scroll', function () {
+      var step = cardStep();
+      if (step > 0) current = Math.round(track.scrollLeft / step);
+    }, { passive: true });
+
+    startTimer();
+  }
+
 })();
