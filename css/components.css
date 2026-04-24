@@ -2,3 +2,438 @@
    COMPONENT STYLES
    JDE Brickwork & Repointing
    ========================================= */
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.site-nav.scrolled {
+  background-color: var(--color-bg-soft);
+  border-bottom-color: var(--color-border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+/* --- Logo --- */
+.nav-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.nav-logo__jde {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--color-gold);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.nav-logo__sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.6rem;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+/* --- Desktop nav links --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.7rem;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-white);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--color-gold);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* --- Phone pill --- */
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+  background-color: var(--color-brick);
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+.nav-phone:hover {
+  background-color: var(--color-brick-light);
+  color: var(--color-white);
+}
+
+/* --- Hamburger button --- */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+  z-index: 1100;
+  position: relative;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background-color: var(--color-white);
+  transition: transform 0.35s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+/* Animate to X */
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* --- Mobile overlay --- */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-overlay__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-overlay__links a {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.nav-overlay__links a:hover {
+  color: var(--color-gold);
+}
+
+.nav-overlay__phone {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  background-color: var(--color-brick);
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav-overlay__phone:hover {
+  background-color: var(--color-brick-light);
+  color: var(--color-white);
+}
+
+/* --- Responsive: show hamburger, hide desktop nav --- */
+@media (max-width: 900px) {
+  .nav-links,
+  .nav-phone {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.site-footer {
+  background-color: var(--color-bg-soft);
+  border-top: 1px solid var(--color-gold);
+  padding-top: 72px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 3rem 4rem;
+  padding-bottom: 64px;
+}
+
+/* --- Footer logo variant --- */
+.nav-logo--footer {
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+}
+
+/* --- Footer tagline --- */
+.footer-tagline {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+/* --- Social icons --- */
+.footer-socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-social-icon:hover {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+}
+
+/* --- Footer column headings --- */
+.footer-heading {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+}
+
+/* --- Quick links list --- */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-links a::before {
+  content: '—';
+  font-size: 0.65rem;
+  color: var(--color-brick);
+  flex-shrink: 0;
+}
+
+.footer-links a:hover {
+  color: var(--color-gold);
+}
+
+/* --- Contact list --- */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  list-style: none;
+}
+
+.footer-contact-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-contact-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+}
+
+.footer-contact-list a,
+.footer-contact-list span:not(.footer-contact-label) {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-contact-list a:hover {
+  color: var(--color-gold);
+}
+
+/* --- Bottom bar --- */
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  padding: 20px 0;
+}
+
+.footer-bottom p {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* --- Footer responsive --- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-col:first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .footer-col:first-child .nav-logo--footer {
+    justify-content: center;
+  }
+
+  .footer-col:first-child .footer-socials {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+
+  .footer-col .nav-logo--footer {
+    justify-content: center;
+  }
+
+  .footer-col .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-links a {
+    justify-content: center;
+  }
+
+  .footer-contact-list li {
+    align-items: center;
+  }
+}
