@@ -1198,3 +1198,250 @@
     font-size: 1.4rem;
   }
 }
+
+
+/* =========================================
+   WHY REPOINTING MATTERS
+   ========================================= */
+
+.why-repoint {
+  background-color: var(--color-bg-soft);
+}
+
+/* --- Section header --- */
+.why-repoint__header {
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+.why-repoint__header h2 {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.15;
+}
+
+.why-repoint__intro {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* --- Problem cards grid (2×2) --- */
+.why-repoint__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Individual problem card --- */
+.problem-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-gold);
+  padding: 2rem 1.75rem;
+}
+
+.problem-card__icon {
+  display: block;
+  font-size: 1.75rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.problem-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.problem-card__body {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* --- Info box --- */
+.why-repoint__infobox {
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-brick);
+  padding: 1.4rem 2rem;
+}
+
+.why-repoint__infobox p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.why-repoint__infobox a {
+  color: var(--color-gold);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.why-repoint__infobox a:hover {
+  color: var(--color-gold-light);
+}
+
+/* --- Why repoint responsive --- */
+@media (max-width: 640px) {
+  .why-repoint__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-repoint__infobox {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+
+/* =========================================
+   FAQ ACCORDION
+   ========================================= */
+
+.faq {
+  background-color: var(--color-bg);
+}
+
+/* --- Layout: two-col on wide screens --- */
+.faq__inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.faq__header h2 {
+  margin-top: 0.75rem;
+  position: sticky;
+  top: 100px;
+}
+
+/* --- FAQ list --- */
+.faq__list {
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- Individual FAQ item --- */
+.faq__item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq__question-wrap {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* --- Question button --- */
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.4rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.975rem;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.5;
+  transition: color 0.25s ease;
+}
+
+.faq__question:hover {
+  color: var(--color-gold);
+}
+
+.faq__question[aria-expanded="true"] {
+  color: var(--color-gold);
+}
+
+/* --- Plus/times icon --- */
+.faq__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-gold);
+  transition: transform 0.35s ease, background-color 0.25s ease;
+}
+
+.faq__question[aria-expanded="true"] .faq__icon {
+  transform: rotate(45deg);
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+}
+
+/* --- Answer panel: grid-template-rows trick for smooth height --- */
+.faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s ease;
+  overflow: hidden;
+}
+
+.faq__answer.is-open {
+  grid-template-rows: 1fr;
+}
+
+.faq__answer-inner {
+  overflow: hidden;
+  padding-bottom: 0;
+  transition: padding-bottom 0.38s ease;
+}
+
+.faq__answer.is-open .faq__answer-inner {
+  padding-bottom: 1.5rem;
+}
+
+.faq__answer-inner p {
+  font-size: 0.925rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.faq__answer-inner a {
+  color: var(--color-gold);
+  font-weight: 400;
+  transition: color 0.25s ease;
+}
+
+.faq__answer-inner a:hover {
+  color: var(--color-gold-light);
+}
+
+/* --- FAQ responsive --- */
+@media (max-width: 820px) {
+  .faq__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq__header h2 {
+    position: static;
+  }
+}

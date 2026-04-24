@@ -60,4 +60,42 @@
     }
   });
 
+  // ── FAQ Accordion ──────────────────────────────────────────────────────────
+  const faqItems = document.querySelectorAll('.faq__item');
+
+  faqItems.forEach(function (item) {
+    const btn    = item.querySelector('.faq__question');
+    const answer = item.querySelector('.faq__answer');
+    if (!btn || !answer) return;
+
+    btn.addEventListener('click', function () {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Collapse all items first
+      faqItems.forEach(function (other) {
+        const otherBtn    = other.querySelector('.faq__question');
+        const otherAnswer = other.querySelector('.faq__answer');
+        if (otherBtn && otherAnswer) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          otherAnswer.classList.remove('is-open');
+        }
+      });
+
+      // If this item was closed, open it
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        answer.classList.add('is-open');
+      }
+    });
+
+    // Keyboard: allow Enter and Space (button already handles Space natively)
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        btn.setAttribute('aria-expanded', 'false');
+        answer.classList.remove('is-open');
+        btn.focus();
+      }
+    });
+  });
+
 })();
